@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uttor Guaton Jame Mosque — Reconstruction Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap');
+
+  @font-face {
+    font-family: 'Hidayatullah';
+    src: url('https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/fonts/hidayatullah.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Tajawal',sans-serif; background:#f5f0e8; color:#2c2c2c; }
+
+  /* LIGHTBOX */
+  .lightbox { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,.93); z-index:9999; justify-content:center; align-items:center; flex-direction:column; }
+  .lightbox.active { display:flex; }
+  .lightbox img { max-width:92vw; max-height:82vh; border-radius:8px; object-fit:contain; }
+  .lightbox-close { position:absolute; top:18px; right:24px; color:white; font-size:2.2em; cursor:pointer; }
+  .lightbox-caption { color:rgba(255,255,255,.8); font-size:.9em; margin-top:12px; text-align:center; }
+
+  /* HERO */
+  .hero { background:linear-gradient(160deg,#1a3a2a 0%,#2d6a4f 50%,#1a3a2a 100%); color:white; text-align:center; padding:60px 20px 50px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-icon { font-size:60px; margin-bottom:15px; position:relative; }
+  .hero h1 { font-family:'Hidayatullah', 'Cormorant Garamond', serif; font-size:3em; font-weight:normal; margin-bottom:8px; text-shadow:0 2px 8px rgba(0,0,0,.3); position:relative; letter-spacing:3px; }
+  .hero .subtitle { font-family:'Tajawal',sans-serif; font-size:1.1em; opacity:.85; margin-bottom:6px; position:relative; letter-spacing:2px; font-weight:500; }
+  .hero .location { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:5px 18px; font-size:.95em; margin-top:10px; position:relative; }
+
+  .arabic-banner { background:#2d6a4f; color:#f0e6c8; text-align:center; padding:18px 20px; font-size:1.1em; }
+  .arabic-banner .bn { display:block; font-size:1.3em; margin-bottom:4px; }
+  .arabic-banner small { font-size:.8em; opacity:.8; }
+
+  /* SECTIONS */
+  .section { background:white; margin:25px auto; max-width:900px; border-radius:12px; overflow:hidden; box-shadow:0 3px 20px rgba(0,0,0,.08); }
+  .section-header { background:linear-gradient(135deg,#2d6a4f,#40916c); color:white; padding:15px 25px; display:flex; align-items:center; gap:12px; }
+  .section-header .icon { font-size:1.5em; }
+  .section-header h2 { font-family:'Tajawal',sans-serif; font-size:1.05em; font-weight:700; letter-spacing:.5px; }
+  .section-body { padding:25px; }
+
+  .intro-text { font-size:1.05em; line-height:1.9; color:#333; border-left:4px solid #2d6a4f; background:#f8fdf9; border-radius:0 8px 8px 0; padding:15px 15px 15px 20px; }
+
+  /* PHOTOS */
+  .photo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:8px; }
+  .photo-grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:8px; }
+  .photo-item { border-radius:8px; overflow:hidden; position:relative; aspect-ratio:4/3; background:#e0e0e0; }
+  .photo-item img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .3s; }
+  .photo-item:hover img { transform:scale(1.04); }
+  .photo-item-wide { border-radius:8px; overflow:hidden; position:relative; aspect-ratio:16/9; background:#e0e0e0; }
+  .photo-item-wide img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .3s; }
+  .photo-label { position:absolute; bottom:0;left:0;right:0; background:linear-gradient(transparent,rgba(0,0,0,.78)); color:white; font-size:.72em; padding:20px 8px 6px; pointer-events:none; }
+  .photo-note { background:#fff8e1; border:1px solid #ffe082; border-radius:8px; padding:12px 16px; margin-top:12px; font-size:.9em; color:#5d4037; }
+
+  /* PROBLEMS TABLE */
+  .prob-table { width:100%; border-collapse:collapse; }
+  .prob-table th { background:#2d6a4f; color:white; padding:11px 14px; text-align:left; font-size:.92em; }
+  .prob-table td { padding:10px 14px; border-bottom:1px solid #eee; font-size:.88em; vertical-align:top; }
+  .prob-table tr:nth-child(even) td { background:#f9f9f9; }
+  .prob-table tr:last-child td { border-bottom:none; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:.8em; font-weight:600; }
+  .badge-danger { background:#ffebee; color:#c62828; }
+  .badge-warn { background:#fff8e1; color:#f57f17; }
+
+  /* LAND */
+  .land-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+  .land-card { background:#f5fdf8; border:1px solid #b7dfcb; border-radius:10px; padding:16px; display:flex; align-items:flex-start; gap:12px; }
+  .land-icon { font-size:1.8em; flex-shrink:0; }
+  .land-card h4 { font-size:.82em; color:#666; margin-bottom:4px; }
+  .land-card p { font-size:.95em; font-weight:600; color:#1a3a2a; }
+
+  /* PLAN STEPS */
+  .plan-steps { display:flex; flex-direction:column; gap:14px; }
+  .step { display:flex; gap:15px; align-items:flex-start; }
+  .step-num { background:#2d6a4f; color:white; border-radius:50%; width:38px;height:38px; display:flex;align-items:center;justify-content:center; font-weight:700; font-size:1em; flex-shrink:0; margin-top:2px; }
+  .step-content h4 { font-size:1em; font-weight:600; color:#1a3a2a; margin-bottom:5px; }
+  .step-content ul { list-style:none; padding:0; }
+  .step-content ul li { font-size:.88em; color:#444; padding:2px 0; }
+  .step-content ul li::before { content:"✦ "; color:#2d6a4f; font-size:.8em; }
+
+  /* BUDGET */
+  .budget-table { width:100%; border-collapse:collapse; }
+  .budget-table th { background:#1a3a2a; color:white; padding:12px 16px; text-align:left; font-size:.9em; }
+  .budget-table td { padding:11px 16px; border-bottom:1px solid #eee; font-size:.9em; }
+  .budget-table tr:nth-child(even) td { background:#f5fdf8; }
+  .budget-table tr.total td { background:#e8f5e9; font-weight:700; font-size:1em; color:#1a3a2a; border-top:2px solid #2d6a4f; border-bottom:none; }
+  .blank-amount { display:inline-block; border-bottom:2px dotted #999; min-width:120px; color:#999; font-style:italic; font-size:.85em; }
+
+  /* WHY DONATE */
+  .hadith-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:#f0e6c8; border-radius:10px; padding:20px 24px; text-align:center; margin-bottom:20px; }
+  .hadith-box p { font-size:1em; line-height:1.9; }
+  .hadith-box small { display:block; margin-top:8px; opacity:.7; font-size:.8em; }
+  .donate-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .donate-card { background:linear-gradient(135deg,#f5fdf8,#e8f5e9); border:1px solid #b7dfcb; border-radius:10px; padding:16px; text-align:center; }
+  .donate-card .di { font-size:2em; margin-bottom:8px; }
+  .donate-card p { font-size:.88em; color:#333; line-height:1.7; }
+
+  /* HOW TO DONATE */
+  .donate-ways { display:flex; flex-direction:column; gap:12px; }
+  .dw { display:flex; gap:14px; align-items:flex-start; background:#f9f9f9; border-radius:8px; padding:14px; border-left:4px solid #2d6a4f; }
+  .dw .dw-icon { font-size:1.5em; flex-shrink:0; }
+  .dw h4 { font-size:.95em; font-weight:600; color:#1a3a2a; margin-bottom:3px; }
+  .dw p { font-size:.85em; color:#555; }
+
+  /* BANK BOX */
+  .bank-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:white; border-radius:12px; padding:30px; text-align:center; }
+  .bank-box h3 { font-size:1.3em; margin-bottom:18px; }
+  .bank-section { background:rgba(255,255,255,.08); border-radius:10px; padding:16px; margin-bottom:14px; }
+  .bank-section:last-child { margin-bottom:0; }
+  .bank-section-title { font-size:.9em; font-weight:600; color:#a8e6c4; margin-bottom:12px; }
+  .payment-card { background:rgba(255,255,255,.06); border-radius:8px; padding:16px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; }
+  .zelle-badge { background:#6D1ED4; border-radius:8px; padding:8px 20px; font-size:1.1em; font-weight:700; color:white; }
+  .bkash-badge { background:#E2136E; border-radius:8px; padding:8px 20px; font-size:1.1em; font-weight:700; color:white; }
+  .payment-label { font-size:.82em; opacity:.7; }
+  .payment-num { font-size:1.2em; font-weight:700; letter-spacing:1px; }
+  .payment-note { font-size:.8em; opacity:.7; margin-top:8px; }
+  .bank-line { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.12); border-radius:8px; padding:11px 22px; margin:6px; font-size:.9em; }
+  .bank-line strong { color:#a8e6c4; }
+
+  .footer { background:#1a3a2a; color:rgba(255,255,255,.6); text-align:center; padding:20px; font-size:.85em; margin-top:30px; }
+
+  @media(max-width:600px) {
+    .hero h1 { font-size:1.5em; }
+    .photo-grid { grid-template-columns:1fr 1fr; }
+    .photo-grid-2 { grid-template-columns:1fr 1fr; }
+    .land-grid,.donate-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+  <span class="lightbox-close" onclick="closeLB()">✕</span>
+  <img id="lb-img" src="" alt="">
+  <div class="lightbox-caption" id="lb-cap"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-icon">🕌</div>
+  <h1>Uttor Guaton Jame Mosque</h1>
+  <p class="subtitle">Reconstruction Project Proposal</p>
+  <span class="location">📍 Jhalokathi District, Barishal Division, Bangladesh</span>
+</div>
+
+<!-- ARABIC BANNER -->
+<div class="arabic-banner">
+  <span class="bn">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+  <small>In the name of Allah, the Most Gracious, the Most Merciful</small>
+</div>
+
+<!-- BANNER PHOTO -->
+<div style="max-width:900px;margin:25px auto;border-radius:12px;overflow:hidden;box-shadow:0 3px 20px rgba(0,0,0,.1);">
+  <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo8.jpg"
+       alt="Mosque — Overall View"
+       style="width:100%;max-height:380px;object-fit:cover;display:block;cursor:pointer;"
+       onclick="openLB(this.src,'Mosque — Overall View')">
+</div>
+
+<!-- INTRODUCTION -->
+<div class="section">
+  <div class="section-header"><span class="icon">📋</span><h2>Introduction</h2></div>
+  <div class="section-body">
+    <p class="intro-text">
+      Established around <strong>1930</strong>, Uttor Guaton Jame Mosque has long served as the spiritual heart of the local Muslim community. Due to its age, the mosque is now in a severely deteriorated condition. A renovation was carried out approximately 10 years ago, but the structure has since deteriorated significantly and requires urgent attention again.<br><br>
+      Due to a lack of sufficient local resources, completing the renovation has become increasingly difficult. The overall infrastructure has weakened to a point where partial repairs are no longer a viable solution — <strong>complete reconstruction is the only safe and sustainable path forward.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- CURRENT CONDITION -->
+<div class="section">
+  <div class="section-header"><span class="icon">📷</span><h2>Current Condition — On-Site Documentation</h2></div>
+  <div class="section-body">
+
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo1.jpg" alt="Large hole & falling plaster on ceiling" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Large hole & falling plaster on ceiling</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo2.jpg" alt="Broken & detached door" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Broken & detached door</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo3.jpg" alt="Serious ceiling damage from inside" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Serious ceiling damage from inside</div>
+      </div>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo4.jpg" alt="Erosion & cracks on exterior wall" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Erosion & cracks on exterior wall</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo5.jpg" alt="Rusted window grills & damaged wall" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Rusted window grills & damaged wall</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo6.jpg" alt="Window condition from inside" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Window condition from inside</div>
+      </div>
+    </div>
+
+    <div class="photo-grid-2">
+      <div class="photo-item-wide">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo8.jpg" alt="Exterior view of the mosque" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Exterior view of the mosque</div>
+      </div>
+      <div class="photo-item-wide">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo9.jpg" alt="Damaged corner of the mosque" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Damaged corner of the mosque</div>
+      </div>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo10.jpg" alt="Deep cracks in structural pillar" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Deep cracks in structural pillar</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo11.jpg" alt="Waterlogging in the courtyard" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Waterlogging in the courtyard</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo12.jpg" alt="Overall structural condition" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Overall structural condition</div>
+      </div>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo13.jpg" alt="Cracks on front wall" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Cracks on front wall</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo14.jpg" alt="Serious condition of side wall" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Serious condition of side wall</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo15.jpg" alt="Wudu area & bathroom condition" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Wudu area & bathroom condition</div>
+      </div>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo16.jpg" alt="Serious cracks in corner pillar" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Serious cracks in corner pillar</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo17.jpg" alt="Multiple deep cracks in wall" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Multiple deep cracks in wall</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo18.jpg" alt="Unsafe electrical wiring" onclick="openLB(this.src,this.alt)">
+        <div class="photo-label">📸 Unsafe electrical wiring</div>
+      </div>
+    </div>
+
+    <div class="photo-note">
+      ⚠️ <strong>Expert Assessment:</strong> The above photos were taken during an on-site inspection. Due to severe structural deterioration in the roof, pillars, and walls, there is a risk of collapse at any time. Complete reconstruction is the only viable option.
+    </div>
+  </div>
+</div>
+
+<!-- IDENTIFIED PROBLEMS -->
+<div class="section">
+  <div class="section-header"><span class="icon">🔍</span><h2>Identified Issues</h2></div>
+  <div class="section-body" style="padding:0;">
+    <table class="prob-table">
+      <tr><th width="5%">#</th><th width="25%">Issue</th><th>Description</th><th width="20%">Status</th></tr>
+      <tr><td>1</td><td>Roof & Ceiling</td><td>Plaster falling off, large holes formed, risk of roof collapse</td><td><span class="badge badge-danger">Critical</span></td></tr>
+      <tr><td>2</td><td>Walls</td><td>Multiple large and deep cracks, bricks exposed</td><td><span class="badge badge-danger">Severe</span></td></tr>
+      <tr><td>3</td><td>Pillars / Columns</td><td>Multiple cracks in corner pillars, structural weakness evident</td><td><span class="badge badge-danger">Severe</span></td></tr>
+      <tr><td>4</td><td>Doors & Windows</td><td>Window grills rusted and broken, doors detached</td><td><span class="badge badge-warn">Urgent Repair</span></td></tr>
+      <tr><td>5</td><td>Exterior Walls</td><td>Plaster completely gone, moss and dampness throughout</td><td><span class="badge badge-warn">Urgent Repair</span></td></tr>
+      <tr><td>6</td><td>Bathroom / Wudu Area</td><td>Severely deteriorated and non-functional</td><td><span class="badge badge-danger">Non-functional</span></td></tr>
+      <tr><td>7</td><td>Waterlogging</td><td>Standing water in mosque courtyard</td><td><span class="badge badge-warn">Problematic</span></td></tr>
+      <tr><td>8</td><td>Electrical System</td><td>Unsafe wiring, ceiling fans not working</td><td><span class="badge badge-danger">Hazardous</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- LAND INFO -->
+<div class="section">
+  <div class="section-header"><span class="icon">📜</span><h2>Land & Property Information</h2></div>
+  <div class="section-body">
+    <div class="land-grid">
+      <div class="land-card"><div class="land-icon">🕌</div><div><h4>Mosque Name</h4><p>Uttor Guaton Jame Mosque</p></div></div>
+      <div class="land-card"><div class="land-icon">📍</div><div><h4>Location</h4><p>Jhalokathi District, Barishal Division</p></div></div>
+      <div class="land-card"><div class="land-icon">📏</div><div><h4>Land Area</h4><p>Approx. 33 Decimals</p></div></div>
+      <div class="land-card"><div class="land-icon">📋</div><div><h4>Document Type</h4><p>Registered, Government Sealed</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RECONSTRUCTION PLAN -->
+<div class="section">
+  <div class="section-header"><span class="icon">🏗️</span><h2>Reconstruction Plan</h2></div>
+  <div class="section-body">
+    <div class="plan-steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Demolition & Groundwork</h4><ul><li>Complete removal of old structure</li><li>Soil testing</li><li>Foundation preparation & leveling</li></ul></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Main Structure Construction</h4><ul><li>Reinforced RCC foundation</li><li>Column, beam & roof slab casting</li><li>Wall construction with quality bricks & cement</li></ul></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Interior Works</h4><ul><li>Floor tiling & plastering</li><li>Installation of doors & windows</li><li>Electrical connections, lighting & fans</li></ul></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Exterior Works</h4><ul><li>Wudu area & toilet construction</li><li>Courtyard improvement & drainage</li><li>Boundary wall</li></ul></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Finishing & Beautification</h4><ul><li>Minaret construction</li><li>Painting & final finishing</li><li>Nameplate installation</li></ul></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BUDGET -->
+<div class="section">
+  <div class="section-header"><span class="icon">💰</span><h2>Estimated Budget</h2></div>
+  <div class="section-body" style="padding:0;">
+    <table class="budget-table">
+      <tr><th>No.</th><th>Category</th><th>Estimated Cost (BDT)</th></tr>
+      <tr><td>1</td><td>Demolition & Groundwork</td><td><span class="blank-amount">To be filled</span></td></tr>
+      <tr><td>2</td><td>Main Structure Construction</td><td><span class="blank-amount">To be filled</span></td></tr>
+      <tr><td>3</td><td>Interior Works</td><td><span class="blank-amount">To be filled</span></td></tr>
+      <tr><td>4</td><td>Wudu Area & Exterior Works</td><td><span class="blank-amount">To be filled</span></td></tr>
+      <tr><td>5</td><td>Finishing & Minaret</td><td><span class="blank-amount">To be filled</span></td></tr>
+      <tr><td>6</td><td>Contingency & Miscellaneous</td><td><span class="blank-amount">To be filled</span></td></tr>
+      <tr class="total"><td colspan="2">Total (Estimated)</td><td><span class="blank-amount">Sum total</span></td></tr>
+    </table>
+    <p style="padding:12px 16px;font-size:.82em;color:#666;">* Final budget will be determined after an engineering survey.</p>
+  </div>
+</div>
+
+<!-- WHY DONATE -->
+<div class="section">
+  <div class="section-header"><span class="icon">🤲</span><h2>Why Donate to This Mosque?</h2></div>
+  <div class="section-body">
+    <div class="hadith-box">
+      <p>Whoever builds a mosque for the sake of Allah,<br>Allah will build for him a house in Paradise.</p>
+      <small>— Sahih Bukhari & Muslim</small>
+    </div>
+    <div class="donate-grid">
+      <div class="donate-card"><div class="di">🕋</div><p>The center for five daily prayers and the weekly Friday prayer for the local community</p></div>
+      <div class="donate-card"><div class="di">📚</div><p>The heart of religious education and social activities in the area</p></div>
+      <div class="donate-card"><div class="di">♾️</div><p>Sadaqah Jariyah — continuous reward that extends beyond this life until the Day of Judgment</p></div>
+      <div class="donate-card"><div class="di">👨‍👩‍👧‍👦</div><p>An opportunity to preserve the spiritual sanctuary for hundreds of worshipping families</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO DONATE -->
+<div class="section">
+  <div class="section-header"><span class="icon">💳</span><h2>Ways to Donate</h2></div>
+  <div class="section-body">
+    <div class="donate-ways">
+      <div class="dw"><div class="dw-icon">🏦</div><div><h4>Full Sponsorship</h4><p>Sponsor the entire mosque or a specific section (roof, minaret, wudu area, etc.)</p></div></div>
+      <div class="dw"><div class="dw-icon">💵</div><div><h4>Partial Donation</h4><p>Any amount is gratefully accepted — every contribution, large or small, is equally valued</p></div></div>
+      <div class="dw"><div class="dw-icon">🧱</div><div><h4>Construction Materials</h4><p>Donate bricks, cement, steel rods, sand, or any other building materials directly</p></div></div>
+      <div class="dw"><div class="dw-icon">👷</div><div><h4>Labour Support</h4><p>Arrange skilled masons or workers to assist with the construction</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DONATION INFO -->
+<div style="max-width:900px;margin:0 auto 30px;padding:0 20px;">
+  <div class="bank-box">
+    <h3>🏦 Donation Information</h3>
+
+    <!-- USA -->
+    <div class="bank-section">
+      <div class="bank-section-title">🇺🇸 United States (USA)</div>
+      <div class="payment-card">
+        <div class="zelle-badge">Zelle</div>
+        <div>
+          <div class="payment-label">Zelle Number</div>
+          <div class="payment-num">+1 480-703-5453</div>
+        </div>
+        <div class="payment-note">* Use the "Send Money" option in the Zelle app</div>
+      </div>
+    </div>
+
+    <!-- BANGLADESH BANK -->
+    <div class="bank-section">
+      <div class="bank-section-title">🇧🇩 Bangladesh — Bank Transfer</div>
+      <div class="bank-line">🕌 Mosque: <strong>Uttor Guaton Jame Mosque</strong></div>
+      <div class="bank-line">🏦 Bank: <strong>Bangladesh Krishi Bank PLC</strong></div>
+      <div class="bank-line">🏢 Branch: <strong>Jhalokathi Branch, Jhalokathi Sadar, Bangladesh</strong></div>
+      <div class="bank-line">💳 Account No: <strong>0410394001690</strong></div>
+      <div class="bank-line">🔁 Routing No: <strong>035420318</strong></div>
+    </div>
+
+    <!-- BKASH -->
+    <div class="bank-section">
+      <div class="bank-section-title">🇧🇩 Bangladesh — bKash (Personal)</div>
+      <div class="payment-card">
+        <div class="bkash-badge">bKash</div>
+        <div>
+          <div class="payment-label">bKash Number</div>
+          <div class="payment-num">01712252033</div>
+        </div>
+        <div class="payment-note">* Use the "Send Money" option</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  May Allah accept your donations and reward you abundantly. Ameen. 🤲<br>
+  <span style="font-size:.85em;">Uttor Guaton Jame Mosque Reconstruction Committee | Jhalokathi, Barishal Division, Bangladesh</span>
+</div>
+
+<script>
+  function openLB(src, cap) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb-cap').textContent = cap || '';
+    document.getElementById('lb').classList.add('active');
+  }
+  function closeLB() {
+    document.getElementById('lb').classList.remove('active');
+    document.getElementById('lb-img').src = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
+</script>
+</body>
+</html>
